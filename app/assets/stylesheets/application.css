@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+@import "pages/index";
+
+@font-face {
+  font-family: "Lucida Sans Typewriter";
+  src: url(/assets/KaushanScript-Regular.otf) format("truetype");
+}

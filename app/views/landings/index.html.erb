@@ -1,1 +1,167 @@
-<h1>Hello</h1>
+
+
+  <div id="intro">
+
+    <div id="timeline">
+    </div>
+
+    <div id="circle">
+    </div>
+
+    <div id="titre_intro">
+      <p>Intro</p>
+    </div>
+
+    <h3 id="loadingMessage2">
+        LOADING RESUME
+        <span id="alpha-loading">.</span>
+    </h3>
+
+    <div class="avatar">
+      <%= image_tag "Salimchorfi.png" %>
+      </a>
+    </div>
+
+    <div class="content">
+      <h1 id="loadingH1">
+        <span><i class="fa fa-cogs"></i></span>
+        RUNNING IDENTITY PROTOCOL
+        <span id="loading">.</span>
+      </h1>
+
+      <p id="greeting"></p>
+      <p id="message"></p>
+
+    </div>
+  </div>
+
+
+  <div id="work">
+
+    <div id="timeline">
+    </div>
+
+  </div>
+
+
+
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+
+   var work = document.getElementById("work");
+   var line = document.getElementById("timeline");
+   var circle = document.getElementById("circle");
+   var titre_intro = document.getElementById("titre_intro");
+   work.style.display = 'none';
+   line.style.opacity = 0;
+   circle.style.opacity = 0;
+   titre_intro.style.opacity = 0;
+
+
+   var initDot = document.getElementById("loading");
+   var loading = setInterval(function() {
+       if(initDot.innerHTML.length == 5) {
+           initDot.innerHTML = "";
+       } else {
+           initDot.innerHTML += ".";
+       }
+   }, 350); // Dot Speed
+
+   var $loadingMessage = $('#loadingH1');
+
+   setTimeout(function() {
+         clearInterval(loading);
+         $loadingMessage.hide();
+      }, 1700);
+
+   var initProgram = setTimeout(function(){
+       var greeting = "Salim Chorfi";
+       var message = "Salimchorfi@gmail.com";
+       var $name = "Salim Chorfi";
+
+      function initIdentityResults(i){
+          $("#message").addClass("sign cursor").text(message.substring(0, i));
+            if(i < message.length){
+                setTimeout(function(){
+                    initIdentityResults(i + 1);
+                }, 65);
+
+            }else{
+               $('#message').removeClass("cursor");
+               var loadingResume = function(){
+                     $("#loadingMessage2").show()
+                     var dotAlpha = document.getElementById("alpha-loading");
+                     var loadingAlpha = setInterval(function() {
+                      if(dotAlpha.innerHTML.length == 7) {
+                          dotAlpha.innerHTML = "";
+                      } else {
+                          dotAlpha.innerHTML += ".";
+                          setTimeout(function() {
+                              clearInterval(loadingAlpha);
+                              $("#loadingMessage2").hide();
+
+                              work.style.display = 'block';
+                              line.style.opacity = 1;
+                              circle.style.opacity = 1;
+                              titre_intro.style.opacity = 1;
+
+                           }, 2000);
+                      }
+                  }, 350);  // Dot Speed
+               }
+               setTimeout(loadingResume, 1000);
+               function initName(i){
+                  $("#name").addClass("sign cursor").text($name.substring(0, i));
+                     if(i < $name.length){
+                        setTimeout(function(){
+                           initName(i + 1);
+                        }, 35);
+                     }else{
+                        $("#name").removeClass("cursor");
+                        setTimeout(function() {
+                           initAlias(0);
+                        }, 1500);
+                     }
+               }
+               setTimeout(function() {
+                  initName(0);
+               }, 2500);
+            }
+
+         }
+
+      function initProgramAlpha(i){
+          $("#greeting").addClass("cursor").text(greeting.substring(0, i));
+            if(i < greeting.length){
+                setTimeout(function(){
+                    initProgramAlpha(i + 1);
+                }, 65);
+            }else{
+               $("#greeting").removeClass("cursor");
+               initIdentityResults(0);
+            }
+         }
+         initProgramAlpha(0)
+
+   }, 2200);
+
+initProgram()
+
+
+
+
+
+
+
+
+
+
+
+  <% end %>
+<% end %>
+
+
+
+
