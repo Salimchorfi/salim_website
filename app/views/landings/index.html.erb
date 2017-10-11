@@ -1,65 +1,75 @@
 
-
+<!-- INTRO ---------------------------------------------------- -->
+<div class="docScroller">
   <div id="intro">
 
-    <div id="adjustment">
-    </div>
-
-    <div id="circle">
-    </div>
-
-    <div id="titre_intro">
-      <p>INTRO</p>
-    </div>
-
-    <h3 id="loadingMessage2">
-        LOADING RESUME
-        <span id="alpha-loading">.</span>
-    </h3>
-
-    <div class="avatar">
-      <%= image_tag "Salimchorfi.png" %>
-      </a>
-    </div>
-
-    <div id="timeline">
-    </div>
-
-    <div class="content">
       <h1 id="loadingH1">
         <span><i class="fa fa-cogs"></i></span>
         RUNNING IDENTITY PROTOCOL
         <span id="loading">.</span>
       </h1>
 
-      <p id="greeting" class="intro-text"></p>
-      <p id="message" class="intro-text"></p>
+      <h3 id="loadingMessage2">
+          LOADING RESUME
+          <span id="alpha-loading">.</span>
+      </h3>
 
-    </div>
+      <div class="content">
+
+        <p id="greeting" class="intro-text"></p>
+        <div id="underline"></div>
+        <p id="message" class="intro-text"></p>
+
+        <a class="scroll-down" id="scroll"></a>
+
+      </div>
+
   </div>
+
+<!--   WORK ------------------------------------------------------ -->
 
 
   <div id="work">
 
-    <div id="timeline">
-    </div>
-
-    <div id="circle2">
-    </div>
-
     <div id="titre_work">
-      <p>WORK EXPERIENCE</p>
+      <p>WORK EXPERIENCE.</p>
     </div>
 
-<!--     <div class="bnc">
-      <h3>National Bank</h3>
-      <p>
-        <span>Strategy consultant, </span>Using creativity and technology to create new business opportuniy.
-      </p>
+      <div class="description banque1">
+        <p class="test">
+          <span>Strategy Analyst, </span>
+          Using creativity and technology to create new business opportuniy.
+          <span class="titre"> National Bank</span>
+        </p>
+      </div>
 
-    </div> -->
+      <div class="description impact">
+        <p>
+          <span>Partnership, </span>
+          Managing the organisation partnership portfolio and deepening the relationship on and off the field with fans and partners.
+          <span class="titre"> Montreal Impact</span>
+        </p>
+      </div>
+
+      <div class="description wagon">
+        <p>
+          <span>Teacher, </span>
+          Teaching basic programming skills.
+          <span class="titre"> Le Wagon</span>
+        </p>
+      </div>
+
+    </div>
+
+<!--   EXPERIENCE --------------------------------------------------- -->
+
+  <div id="experience">
 
   </div>
+
+  </div>
+
+</div>
 
 
 
@@ -68,14 +78,11 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
 
-   var work = document.getElementById("work");
-   var line = document.getElementById("timeline");
-   var circle = document.getElementById("circle");
-   var titre_intro = document.getElementById("titre_intro");
-   work.style.display = 'none';
-   line.style.opacity = 0;
-   circle.style.opacity = 0;
-   titre_intro.style.opacity = 0;
+  var underline = document.getElementById("underline");
+  var scroll = document.getElementById("scroll");
+
+  underline.style.opacity = 0;
+  scroll.style.opacity = 0;
 
 
    var initDot = document.getElementById("loading");
@@ -108,27 +115,9 @@
 
             }else{
                $('#message').removeClass("cursor");
-               var loadingResume = function(){
-                     $("#loadingMessage2").show()
-                     var dotAlpha = document.getElementById("alpha-loading");
-                     var loadingAlpha = setInterval(function() {
-                      if(dotAlpha.innerHTML.length == 7) {
-                          dotAlpha.innerHTML = "";
-                      } else {
-                          dotAlpha.innerHTML += ".";
-                          setTimeout(function() {
-                              clearInterval(loadingAlpha);
-                              $("#loadingMessage2").hide();
+               underline.style.opacity = 1;
+               scroll.style.opacity = 1;
 
-                              work.style.display = 'block';
-                              line.style.opacity = 1;
-                              circle.style.opacity = 1;
-                              titre_intro.style.opacity = 1;
-
-                           }, 2000);
-                      }
-                  }, 350);  // Dot Speed
-               }
                setTimeout(loadingResume, 1000);
                function initName(i){
                   $("#name").addClass("sign cursor").text($name.substring(0, i));
